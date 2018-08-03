@@ -112,7 +112,7 @@ let writeToFile = (body, sourceLink, dep) => {
 	console.log('[Step 5] Writing to file for '  + dep)
 	let project = `\n## Project\n${dep}\n`
 	let source = `\n### Source\n${sourceLink}\n`
-	let license = `\n### License\n${body}\n`
+	let license = `\n### License\n${body}\n\n`
 	let hr = '-------------------------------------------------------------------------------\n'
 	fs.appendFile(CREDITS_MD, `${project}${source}${license}${hr}`, 'utf8', function(err) {})
 	retrieveNext()
