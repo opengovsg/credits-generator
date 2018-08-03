@@ -14,8 +14,8 @@ let dependencies = []
 /**
  * Enter file names here
  */
-const INPUT_PACKAGE_JSON = 'test-package.json'
-const CREDITS_MD = 'CREDITS.md'
+const INPUT_PACKAGE_JSON = 'sample-package.json'
+const CREDITS_MD = 'sample-CREDITS.md'
 
 let retrieveNext = () => {
 	if (dependencies.length === 0) {
