@@ -1,0 +1,28 @@
+{
+  "name": "credits-generator",
+  "version": "1.0.0",
+  "description": "Takes in package.json and outputs a CREDITS.md file",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datagovsg/credits-generator.git"
+  },
+  "author": "Leonard Loo (leonard@data.gov.sg)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/datagovsg/credits-generator/issues"
+  },
+  "homepage": "https://github.com/datagovsg/credits-generator#readme",
+  "dependencies": {
+    "express": "~4.16.3",
+    "crawler": "^1.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}

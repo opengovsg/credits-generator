@@ -1,0 +1,10 @@
+{
+  "name": "Sample package.json",
+  "dependencies": {
+    "ajv": "^5.2.3",
+    "angular": "1.4.14"
+  },
+  "devDependencies": {
+    "babel-core": "~6.26.0"
+  }
+}
