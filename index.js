@@ -110,15 +110,26 @@ let extractBody = (rawLink, sourceLink, dep) => {
 
 let writeToFile = (body, sourceLink, dep) => {
 	console.log('[Step 5] Writing to file for '  + dep)
-	let project = `\n##Project\n${dep}\n`
-	let source = `\n###Source\n${sourceLink}\n`
-	let license = `\n###License\n${body}\n-------------------------------------------------------------------------------\n`
-	fs.appendFile(CREDITS_MD, `${project}${source}${license}`, 'utf8', function(err) {})
+	let project = `\n## Project\n${dep}\n`
+	let source = `\n### Source\n${sourceLink}\n`
+	let license = `\n### License\n${body}\n`
+	let hr = '-------------------------------------------------------------------------------\n'
+	fs.appendFile(CREDITS_MD, `${project}${source}${license}${hr}`, 'utf8', function(err) {})
 	retrieveNext()
 } 
 
+let initialiseCredits = () => {
+	let header = '# Credits\n'
+	let body = 'This application uses Open Source components. You can find the ' +
+	'source code of their open source projects along with license information below.' + 
+	' We acknowledge and are grateful to these developers for their contributions to open source.\n\n'
+	let hr = '-------------------------------------------------------------------------------\n'
+	fs.writeFileSync(CREDITS_MD, `${header}${body}${hr}`, {encoding: 'utf8', flag: 'w'})
+}
+
 // Runs the generator when root '/' is visited
 app.get('/', (req, res) => {
+	initialiseCredits()
 	let packageJson = JSON.parse(fs.readFileSync(INPUT_PACKAGE_JSON, 'utf8'))
 	// Only extracts prod not dev dependencies
 	dependencies = Object.keys(packageJson['dependencies'])

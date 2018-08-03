@@ -1,11 +1,15 @@
+# Credits
+This application uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.
 
-##Project
+-------------------------------------------------------------------------------
+
+## Project
 ajv
 
-###Source
+### Source
 https://github.com/epoberezkin/ajv
 
-###License
+### License
 The MIT License (MIT)
 
 Copyright (c) 2015-2017 Evgeny Poberezkin
@@ -31,13 +35,13 @@ SOFTWARE.
 
 -------------------------------------------------------------------------------
 
-##Project
+## Project
 angular
 
-###Source
+### Source
 https://github.com/angular/angular.js
 
-###License
+### License
 The MIT License
 
 Copyright (c) 2010-2018 Google, Inc. http://angularjs.org
