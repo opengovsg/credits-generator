@@ -1,5 +1,5 @@
 /**
- * To run the generator, simply set your package.json and CREDITS.md file locations, 
+ * To run the generator, simply set your package.json and CREDITS.md file locations,
  * then visit the browser at localhost:3456/ (root).
  */
 
@@ -14,8 +14,8 @@ let dependencies = []
 /**
  * Enter file names here
  */
-const INPUT_PACKAGE_JSON = 'sample-package.json'
-const CREDITS_MD = 'sample-CREDITS.md'
+const INPUT_PACKAGE_JSON = 'package.json'
+const CREDITS_MD = 'CREDITS.md'
 
 let retrieveNext = () => {
 	if (dependencies.length === 0) {
@@ -33,7 +33,7 @@ let retrieve = (dep) => {
 				if (err) throw err
 				let $ = res.$
 				let hasRepo = false
-				
+
 				// Find github repo
 				$('a[href^="https://github.com"]').each(function() {
 					let href = $(this).attr('href')
@@ -47,7 +47,7 @@ let retrieve = (dep) => {
 				}
 				done()
 			}
-	})	
+	})
 }
 
 let extractLicense = (sourceLink, dep) => {
@@ -67,7 +67,7 @@ let extractLicense = (sourceLink, dep) => {
 						// Check if license is in the README
 						let body = $('.Box-body').text()
 						// Default license body in case no license in README
-						let licenseBody = 'There is no license specified in this repository.' + 
+						let licenseBody = 'There is no license specified in this repository.' +
 						' Please visit the source and contact the repository\'s owners to find out more.\n'
 						if (body.includes('License')) {
 							// Attempt to extract license from README
@@ -77,7 +77,7 @@ let extractLicense = (sourceLink, dep) => {
 					}
 					done()
 			}
-	})	
+	})
 }
 
 let extractRaw = (licenseLink, sourceLink, dep) => {
@@ -91,7 +91,7 @@ let extractRaw = (licenseLink, sourceLink, dep) => {
 				extractBody(rawLink, sourceLink, dep)
 				done()
 			}
-	})	
+	})
 }
 
 let extractBody = (rawLink, sourceLink, dep) => {
@@ -105,7 +105,7 @@ let extractBody = (rawLink, sourceLink, dep) => {
 				writeToFile(res.body, sourceLink, dep)
 				done()
 			}
-	})	
+	})
 }
 
 let writeToFile = (body, sourceLink, dep) => {
@@ -116,12 +116,12 @@ let writeToFile = (body, sourceLink, dep) => {
 	let hr = '-------------------------------------------------------------------------------\n'
 	fs.appendFile(CREDITS_MD, `${project}${source}${license}${hr}`, 'utf8', function(err) {})
 	retrieveNext()
-} 
+}
 
 let initialiseCredits = () => {
 	let header = '# Credits\n'
 	let body = 'This application uses Open Source components. You can find the ' +
-	'source code of their open source projects along with license information below.' + 
+	'source code of their open source projects along with license information below.' +
 	' We acknowledge and are grateful to these developers for their contributions to open source.\n\n'
 	let hr = '-------------------------------------------------------------------------------\n'
 	fs.writeFileSync(CREDITS_MD, `${header}${body}${hr}`, {encoding: 'utf8', flag: 'w'})
