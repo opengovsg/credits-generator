@@ -13,7 +13,7 @@
     "url": "git+https://github.com/datagovsg/credits-generator.git"
   },
   "author": "Leonard Loo (leonard@data.gov.sg)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/datagovsg/credits-generator/issues"
   },
