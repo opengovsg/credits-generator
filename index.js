@@ -114,7 +114,16 @@ let writeToFile = (body, sourceLink, dep) => {
   let source = `\n### Source\n${sourceLink}\n`
   let license = `\n### License\n${body}\n\n`
   let hr = '-------------------------------------------------------------------------------\n'
-  fs.appendFile(CREDITS_MD, `${project}${source}${license}${hr}`, 'utf8', console.error)
+  fs.appendFile(
+    CREDITS_MD,
+    `${project}${source}${license}${hr}`,
+    'utf8',
+    err => {
+      if (err) {
+        console.error(err)
+      }
+    }
+  )
   retrieveNext()
 }
 
