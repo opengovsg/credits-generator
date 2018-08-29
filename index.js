@@ -1,11 +1,5 @@
-/**
- * To run the generator, simply set your package.json and CREDITS.md file locations,
- * then visit the browser at localhost:3456/ (root).
- */
+#!/usr/bin/env node
 
-const express = require('express')
-const app = express()
-const port = 3456
 const Crawler = require('crawler')
 const fs = require('fs')
 let c = new Crawler({})
@@ -136,19 +130,11 @@ let initialiseCredits = () => {
   fs.writeFileSync(CREDITS_MD, `${header}${body}${hr}`, {encoding: 'utf8', flag: 'w'})
 }
 
-// Runs the generator when root '/' is visited
-app.get('/', (req, res) => {
-  initialiseCredits()
-  let packageJson = JSON.parse(fs.readFileSync(INPUT_PACKAGE_JSON, 'utf8'))
-  // Only extracts prod not dev dependencies
-  dependencies = Object.keys(packageJson['dependencies'])
-  // Sequentially retrieve licenses
-  retrieve(dependencies.shift())
-})
+initialiseCredits()
+let packageJson = JSON.parse(fs.readFileSync(INPUT_PACKAGE_JSON, 'utf8'))
 
-app.listen(port, (err) => {
-  if (err) {
-    return console.error('Something bad happened', err)
-  }
-  console.log(`Server is listening on ${port}`)
-})
+// Only extracts prod not dev dependencies
+dependencies = Object.keys(packageJson['dependencies'])
+
+// Sequentially retrieve licenses
+retrieve(dependencies.shift())

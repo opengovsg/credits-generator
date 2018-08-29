@@ -2,12 +2,10 @@
 
 Takes in package.json and outputs a CREDITS.md file
 
-## Installation
+## Usage
 
-1. Clone the repo
-2. `npm install` followed by `npm run dev`
-3. Open a browser and visit [http://localhost:3456](http://localhost:3456)
-4. Just refresh the page and view the command line to see your `CREDITS.md` being generated
+1. `npx credits-generator` from your node project
+2. `CREDITS.md` generated!
 
 An example is in this project's own `package.json` and `CREDITS.md`.
 

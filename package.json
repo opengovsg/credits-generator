@@ -1,8 +1,11 @@
 {
-  "name": "credits-generator",
+  "name": "@opengovsg/credits-generator",
   "version": "1.0.0",
   "description": "Takes in package.json and outputs a CREDITS.md file",
   "main": "index.js",
+  "bin": {
+    "credits-generator": "./index.js"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
@@ -12,14 +15,13 @@
     "type": "git",
     "url": "git+https://github.com/datagovsg/credits-generator.git"
   },
-  "author": "Leonard Loo (leonard@data.gov.sg)",
+  "author": "Government Technology Agency of Singapore (https://www.tech.gov.sg)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/datagovsg/credits-generator/issues"
   },
   "homepage": "https://github.com/datagovsg/credits-generator#readme",
   "dependencies": {
-    "express": "~4.16.3",
     "crawler": "^1.1.4"
   },
   "devDependencies": {
