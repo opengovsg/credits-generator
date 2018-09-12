@@ -4,7 +4,7 @@ Takes in package.json and outputs a CREDITS.md file attributing the authors of y
 
 ## Usage
 
-1. `npx credits-generator` from your node project
+1. `npx @opengovsg/credits-generator` from your node project
 2. `CREDITS.md` generated!
 
 An example is in this project's own `package.json` and `CREDITS.md`.
