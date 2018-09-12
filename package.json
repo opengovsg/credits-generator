@@ -1,6 +1,6 @@
 {
   "name": "@opengovsg/credits-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Takes in package.json and outputs a CREDITS.md file",
   "main": "index.js",
   "bin": {
