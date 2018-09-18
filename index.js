@@ -22,22 +22,22 @@ let retrieveNext = () => {
 let retrieve = (dep) => {
   console.log('[Step 1] Retrieving ' + dep)
   c.queue({
-    uri: `https://www.npmjs.com/package/${dep}`,
+    uri: `https://registry.npmjs.org/${dep}`,
+    jQuery: false,
     callback: function (err, res, done) {
       if (err) throw err
-      let $ = res.$
-      let hasRepo = false
+      const { repository, license } = JSON.parse(res.body) || {}
+      const { url: gitLink } = repository || {}
 
       // Find github repo
-      $('a[href^="https://github.com"]').each(function () {
-        let href = $(this).attr('href')
-        if ($(this).text().includes('Gitgithub')) {
-          hasRepo = true
-          extractLicense(href, dep)
-        }
-      })
-      if (!hasRepo) {
-        retrieveNext()
+      const [, rp] = (gitLink && gitLink.match(/github\.com\/(.+)/)) || []
+      if (rp) {
+        const repoPath = rp.replace('.git', '')
+        const sourceLink = `https://github.com/${repoPath}`
+        extractLicense(sourceLink, dep)
+      } else {
+        const licenseBody = `No source repository found, npm lists license as ${license}`
+        writeToFile(licenseBody, 'Not Known', dep)
       }
       done()
     },
