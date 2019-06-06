@@ -1,6 +1,6 @@
 {
   "name": "@opengovsg/credits-generator",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Takes in package.json and outputs a CREDITS.md file",
   "main": "index.js",
   "bin": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/datagovsg/credits-generator#readme",
   "dependencies": {
-    "crawler": "^1.2.0"
+    "crawler": "^1.2.1"
   },
   "devDependencies": {
     "@opengovsg/eslint-config-opengovsg": "^1.0.5",
