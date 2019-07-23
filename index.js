@@ -131,7 +131,9 @@ let initialiseCredits = () => {
 }
 
 initialiseCredits()
-let packageJson = JSON.parse(fs.readFileSync(INPUT_PACKAGE_JSON, 'utf8'))
+const target = process.argv[2] || INPUT_PACKAGE_JSON
+
+let packageJson = JSON.parse(fs.readFileSync(target, 'utf8'))
 
 // Only extracts prod not dev dependencies
 dependencies = Object.keys(packageJson['dependencies'])
