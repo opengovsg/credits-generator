@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/datagovsg/credits-generator#readme",
   "dependencies": {
-    "crawler": "^1.2.1"
+    "crawler": "^1.3.0"
   },
   "devDependencies": {
     "@opengovsg/eslint-config-opengovsg": "^1.0.5",
