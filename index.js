@@ -55,8 +55,8 @@ let extractLicense = (sourceLink, dep) => {
       let licenseElement = $('a[href*="LICENSE"]')
       if (licenseElement.length) {
         // License is in a LICENSE file
-        let licenseLink = 'https://github.com' + (licenseElement[0].attribs.href)
-        extractRaw(licenseLink, sourceLink, dep)
+        let licenseRawLink = 'https://github.com' + (licenseElement[0].attribs.href) + "?raw=true"
+        extractBody(licenseRawLink, sourceLink, dep)
       } else {
         // Check if license is in the README
         let body = $('.Box-body').text()
@@ -69,20 +69,6 @@ let extractLicense = (sourceLink, dep) => {
         }
         writeToFile(licenseBody, sourceLink, dep)
       }
-      done()
-    },
-  })
-}
-
-let extractRaw = (licenseLink, sourceLink, dep) => {
-  console.log('[Step 3] Extracting raw for ' + licenseLink)
-  c.queue({
-    uri: licenseLink,
-    callback: function (err, res, done) {
-      if (err) throw err
-      let $ = res.$
-      let rawLink = 'https://github.com' + $('a[id="raw-url"]')[0].attribs.href
-      extractBody(rawLink, sourceLink, dep)
       done()
     },
   })
