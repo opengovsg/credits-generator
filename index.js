@@ -77,7 +77,7 @@ let extractLicense = (sourceLink, dep) => {
 }
 
 let extractBody = (rawLink, sourceLink, dep) => {
-  console.log('[Step 4] Extracting body for ' + rawLink)
+  console.log('[Step 3] Extracting body for ' + rawLink)
   c.queue({
     uri: rawLink,
     jQuery: false,
@@ -91,7 +91,7 @@ let extractBody = (rawLink, sourceLink, dep) => {
 }
 
 let writeToFile = (body, sourceLink, dep) => {
-  console.log('[Step 5] Writing to file for ' + dep)
+  console.log('[Step 4] Writing to file for ' + dep)
   let project = `\n## Project\n${dep}\n`
   let source = `\n### Source\n${sourceLink}\n`
   let license = `\n### License\n${body}\n\n`
