@@ -55,8 +55,10 @@ let extractLicense = (sourceLink, dep) => {
       let licenseElement = $('a[href*="LICENSE"]')
       if (licenseElement.length) {
         // License is in a LICENSE file
-        let licenseLink = 'https://github.com' + (licenseElement[0].attribs.href)
-        extractRaw(licenseLink, sourceLink, dep)
+        let path = licenseElement[0].attribs.href.replace('/blob', '')
+        let rawLink = 'https://raw.githubusercontent.com/' + path
+        extractBody(rawLink, sourceLink, dep)
+        done()
       } else {
         // Check if license is in the README
         let body = $('.Box-body').text()
@@ -74,22 +76,8 @@ let extractLicense = (sourceLink, dep) => {
   })
 }
 
-let extractRaw = (licenseLink, sourceLink, dep) => {
-  console.log('[Step 3] Extracting raw for ' + licenseLink)
-  c.queue({
-    uri: licenseLink,
-    callback: function (err, res, done) {
-      if (err) throw err
-      let $ = res.$
-      let rawLink = 'https://github.com' + $('a[id="raw-url"]')[0].attribs.href
-      extractBody(rawLink, sourceLink, dep)
-      done()
-    },
-  })
-}
-
 let extractBody = (rawLink, sourceLink, dep) => {
-  console.log('[Step 4] Extracting body for ' + rawLink)
+  console.log('[Step 3] Extracting body for ' + rawLink)
   c.queue({
     uri: rawLink,
     jQuery: false,
@@ -103,7 +91,7 @@ let extractBody = (rawLink, sourceLink, dep) => {
 }
 
 let writeToFile = (body, sourceLink, dep) => {
-  console.log('[Step 5] Writing to file for ' + dep)
+  console.log('[Step 4] Writing to file for ' + dep)
   let project = `\n## Project\n${dep}\n`
   let source = `\n### Source\n${sourceLink}\n`
   let license = `\n### License\n${body}\n\n`
